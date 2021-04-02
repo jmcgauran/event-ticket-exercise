@@ -7,10 +7,10 @@ contract EventTicketsV2 {
     /*
         Define an public owner variable. Set it to the creator of the contract when it is initialized.
     */
-    address payable public owner;
+    address owner ;
 
     constructor() public {
-        msg.sender == owner;
+        owner = msg.sender  ;
         eventId = 0;
     }
 
@@ -220,9 +220,9 @@ contract EventTicketsV2 {
     function endSale(uint256 _eventId) public onlyOwner {
         // get the events mapping
         Event storage _refundEvent = events[_eventId];
-        _refundEvent.isOpen == false;
+        _refundEvent.isOpen = false;
         uint256 balance = _refundEvent.sales * PRICE_TICKET;
-        owner.transfer(balance);
+        msg.sender.transfer(balance);
         emit LogEndSale(owner, balance, _eventId);
     }
 }
