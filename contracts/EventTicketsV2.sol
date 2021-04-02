@@ -91,8 +91,9 @@ contract EventTicketsV2 {
             desc: _desc,
             url: _url,
             totalTickets: _num,
+            sales: 0,
             isOpen: true
-            // How do I instatiate the mapping ?
+            
         });
         eventId = eventId + 1;
         emit LogEventAdded(_desc, _url, _num, eventId);
